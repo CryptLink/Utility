@@ -1,6 +1,6 @@
 write-host "This script updates the version numbers in all .csproj files in a folder, optionally creates a git tag and pushes it"
 
-$folders = Get-ChildItem -Directory;
+$folders = Get-ChildItem ../ -Directory;
 $count = 0;
 
 foreach($folder in $folders){
@@ -41,14 +41,14 @@ Get-ChildItem -recurse *.csproj | ForEach-Object {
 Write-Host "Git status:";
 git status;
 
-if(Read-Host "Add and commit to git? (y/n)" -eq "y"){
+if((Read-Host "Add and commit to git? (y/n)").ToLower() -eq "y"){
     git add -A;
     git commit -m "Bumping version to $newVersion";    
 } else {
     exit;
 }
 
-if(Read-Host "Git tag? (y/n)" -eq "y") {
+if((Read-Host "Git tag? (y/n)").ToLower()  -eq "y") {
     git tag -a "v$newVersion" -m "v$newVersion"
 } else {
     exit;
@@ -57,7 +57,7 @@ if(Read-Host "Git tag? (y/n)" -eq "y") {
 Write-Host "Git status:";
 git status;
 
-if(Read-Host "Git push? (y/n)" -eq "y") {
+if((Read-Host "Git push? (y/n)").ToLower()  -eq "y") {
     git push origin "v$newVersion";
 } else {
     exit;
