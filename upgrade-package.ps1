@@ -1,4 +1,4 @@
-# recursivly upgrades all zerver packages for a specific nuget package
+# recursivly upgrades all zerver packages for a specific nuget package, uses `dotnet add` with csproj files
 
 Param(
     [string]$packageName = ""
