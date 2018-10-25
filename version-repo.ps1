@@ -64,3 +64,5 @@ if((Read-Host "Git push? (y/n)").ToLower()  -eq "y") {
 } else {
     exit;
 }
+
+Set-Location ../Utility/
